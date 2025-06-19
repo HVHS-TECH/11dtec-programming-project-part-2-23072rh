@@ -4,7 +4,6 @@
   <title>Car Rental App</title>
   <style>
     body { font-family: Arial; padding: 20px; }
-    .car-button { margin: 5px 0; display: block; }
     .error { color: red; }
     .section { margin-bottom: 20px; }
   </style>
@@ -13,7 +12,7 @@
 
   <h1>Rob's Car Rentals</h1>
 
-  <!-- All form fields shown together -->
+  <!-- All input fields shown at once -->
   <div class="section">
     <label for="nameInput">Your name:</label><br>
     <input type="text" id="nameInput"><br><br>
@@ -39,18 +38,12 @@
       Add insurance for $50
     </label><br><br>
 
-    <button onclick="startRental()">Find Matching Cars</button>
+    <button onclick="processRental()">Submit</button>
     <p id="inputError" class="error"></p>
   </div>
 
-  <!-- Welcome text + matching cars -->
-  <div class="section">
-    <h2 id="welcomeText"></h2>
-    <div id="carList"></div>
-  </div>
-
-  <!-- Final outcome -->
-  <div class="section" id="result"></div>
+  <!-- Summary and result appear here -->
+  <div id="summarySection" class="section"></div>
 
   <script>
     const cars = [
@@ -64,23 +57,18 @@
       { name: "KIA Carnival", seats: 8, price: 180 }
     ];
 
-    let selectedCar = null;
-
-    function startRental() {
+    function processRental() {
       const name = document.getElementById("nameInput").value.trim();
       const seatValue = document.getElementById("seatsDropdown").value;
       const daysValue = document.getElementById("daysInput").value;
       const insuranceSelected = document.getElementById("insuranceCheckbox").checked;
-      const errorMsg = document.getElementById("inputError");
-      const carListDiv = document.getElementById("carList");
-      const resultDiv = document.getElementById("result");
-      const welcomeText = document.getElementById("welcomeText");
 
-      // Clear old outputs
+      const errorMsg = document.getElementById("inputError");
+      const summaryDiv = document.getElementById("summarySection");
+
+      // Clear previous messages
       errorMsg.textContent = "";
-      carListDiv.innerHTML = "";
-      resultDiv.innerHTML = "";
-      welcomeText.textContent = "";
+      summaryDiv.innerHTML = "";
 
       // Validation
       if (name === "" || !isNaN(name)) {
@@ -89,41 +77,32 @@
       }
 
       if (seatValue === "" || daysValue === "" || daysValue < 1) {
-        errorMsg.textContent = "Please select a number of seats and enter valid rental days.";
+        errorMsg.textContent = "Please select a seat option and valid rental days.";
         return;
       }
 
       const seatCount = Number(seatValue);
       const rentalDays = Number(daysValue);
 
-      // Welcome message
-      welcomeText.textContent = `Welcome, ${name}! Here are your matching cars:`;
+      // Try to find a car that matches exactly
+      const matchingCar = cars.find(car => car.seats === seatCount);
 
-      // Show exact-match cars
-      let foundMatch = false;
-      cars.forEach(function(car) {
-        if (car.seats === seatCount) {
-          foundMatch = true;
-          const btn = document.createElement("button");
-          btn.textContent = `${car.name} - ${car.seats} seats - $${car.price}`;
-          btn.className = "car-button";
-          btn.onclick = function() {
-            const insuranceCost = insuranceSelected ? 50 : 0;
-            const totalCost = car.seats * rentalDays * 10 + insuranceCost;
-            resultDiv.innerHTML = `
-              <h3>Thank you, ${name}!</h3>
-              <p>You selected: <strong>${car.name}</strong></p>
-              <p>Rental duration: <strong>${rentalDays} day(s)</strong></p>
-              <p>Insurance added: <strong>${insuranceSelected ? "Yes (+$50)" : "No"}</strong></p>
-              <p>Total cost: <strong>$${totalCost}</strong></p>
-            `;
-          };
-          carListDiv.appendChild(btn);
-        }
-      });
+      // Display everything
+      summaryDiv.innerHTML = `<h2>Summary for ${name}</h2>
+        <p><strong>Seats needed:</strong> ${seatCount}</p>
+        <p><strong>Rental days:</strong> ${rentalDays}</p>
+        <p><strong>Insurance:</strong> ${insuranceSelected ? "Yes (+$50)" : "No"}</p>`;
 
-      if (!foundMatch) {
-        carListDiv.innerHTML = `<p class="error">Sorry ${name}, we have no cars with exactly ${seatCount} seat(s).</p>`;
+      if (matchingCar) {
+        const insuranceCost = insuranceSelected ? 50 : 0;
+        const totalCost = seatCount * rentalDays * 10 + insuranceCost;
+
+        summaryDiv.innerHTML += `
+          <p><strong>Car selected:</strong> ${matchingCar.name}</p>
+          <p><strong>Total cost:</strong> $${totalCost}</p>
+        `;
+      } else {
+        summaryDiv.innerHTML += `<p class="error">Sorry ${name}, we don’t have a car with exactly ${seatCount} seats.</p>`;
       }
     }
   </script>
