@@ -1,3 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car Rental</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .car-option { margin: 5px 0; }
+  </style>
+</head>
+<body>
 
+  <h1>Car Rental Service</h1>
 
+  <!-- User input for number of seats -->
+  <label for="seatsInput">How many seats do you need?</label>
+  <input type="number" id="seatsInput" min="1" max="8">
+  <button onclick="showMatchingCars()">Find Cars</button>
 
+  <div id="carList"></div>
+
+  <div id="upgradeSection" style="display:none;">
+    <p>Would you like to add insurance for $50?</p>
+    <button onclick="selectCar(true)">Yes</button>
+    <button onclick="selectCar(false)">No</button>
+  </div>
+
+  <div id="totalCost"></div>
+
+  <script>
+    // Car data stored as an array of objects
+    const carList = [
+      { name: "BAC Mono", seats: 1, price: 100 },
+      { name: "Mazda MX5", seats: 2, price: 120 },
+      { name: "Toyota Yaris", seats: 3, price: 130 },
+      { name: "Mini Cooper", seats: 4, price: 140 },
+      { name: "KIA Sportage", seats: 5, price: 150 },
+      { name: "Mitsubishi Triton", seats: 6, price: 160 },
+      { name: "Mitsubishi Outlander", seats: 7, price: 170 },
+      { name: "KIA Carnival", seats: 8, price: 180 }
+    ];
+
+    let selectedCar = null;
+
+    // Show all cars that match seat number
+    function showMatchingCars() {
+      const seatsNeeded = Number(document.getElementById("seatsInput").value);
+      const resultsDiv = document.getElementById("carList");
+      resultsDiv.innerHTML = ""; // Clear old results
+
+      // Filter and display cars
+      carList.forEach(function(car, index) {
+        if (car.seats >= seatsNeeded) {
+          const carButton = document.createElement("button");
+          carButton.textContent = `${car.name} - ${car.seats} seats - $${car.price}`;
+          carButton.className = "car-option";
+          carButton.onclick = function() {
+            selectedCar = car;
+            document.getElementById("upgradeSection").style.display = "block";
+          };
+          resultsDiv.appendChild(carButton);
+        }
+      });
+    }
+
+    // Calculate total cost after insurance choice
+    function selectCar(addInsurance) {
+      let cost = selectedCar.price;
+      if (addInsurance) {
+        cost += 50;
+      }
+
+      document.getElementById("totalCost").innerHTML =
+        `<h3>You selected the ${selectedCar.name}</h3>
+         <p>Total cost: $${cost}</p>`;
+    }
+  </script>
+
+</body>
+</html>
