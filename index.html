@@ -4,31 +4,39 @@
   <title>Car Rental</title>
   <style>
     body { font-family: Arial; padding: 20px; }
+    .hidden { display: none; }
     .car-option { margin: 5px 0; }
   </style>
 </head>
 <body>
 
-  <h1>Car Rental Service</h1>
+  <h1>Rob's Car Rental Service</h1>
 
-  <!-- User input for number of seats -->
-  <label for="seatsInput">How many seats do you need?</label>
-  <input type="number" id="seatsInput" min="1" max="8">
-  <button onclick="showMatchingCars()">Find Cars</button>
+  <!-- Start button -->
+  <button onclick="startOrder()">Start Order</button>
 
-  <div id="carList"></div>
+  <!-- Input fields -->
+  <div id="inputSection" class="hidden">
+    <p id="welcomeMessage"></p>
 
-  <div id="upgradeSection" style="display:none;">
-    <p>Would you like to add insurance for $50?</p>
-    <button onclick="selectCar(true)">Yes</button>
-    <button onclick="selectCar(false)">No</button>
+    <label for="seatsInput">Hi <span id="userNameSpan"></span>, how many seats do you need?</label><br>
+    <input type="number" id="seatsInput" min="1" max="8"><br><br>
+
+    <label for="daysInput">How many days would you like to rent the car?</label><br>
+    <input type="number" id="daysInput" min="1"><br><br>
+
+    <button onclick="showMatchingCars()">Find Matching Cars</button>
   </div>
 
-  <div id="totalCost"></div>
+  <!-- Matching cars -->
+  <div id="carList"></div>
+
+  <!-- Final result -->
+  <div id="result" class="hidden"></div>
 
   <script>
-    // Car data stored as an array of objects
-    const carList = [
+    // Array of car objects
+    const cars = [
       { name: "BAC Mono", seats: 1, price: 100 },
       { name: "Mazda MX5", seats: 2, price: 120 },
       { name: "Toyota Yaris", seats: 3, price: 130 },
@@ -39,39 +47,67 @@
       { name: "KIA Carnival", seats: 8, price: 180 }
     ];
 
+    // Variables to store user input
+    let userName = "";
     let selectedCar = null;
+    let rentalDays = 0;
 
-    // Show all cars that match seat number
+    // Start order and ask for user's name
+    function startOrder() {
+      userName = prompt("What is your name?");
+      if (userName == null || userName === "" || !isNaN(userName)) {
+        alert("Please enter a valid name.");
+        return;
+      }
+
+      document.getElementById("userNameSpan").textContent = userName;
+      document.getElementById("welcomeMessage").textContent = `Welcome, ${userName}!`;
+      document.getElementById("inputSection").classList.remove("hidden");
+    }
+
+    // Show cars that match the number of seats
     function showMatchingCars() {
-      const seatsNeeded = Number(document.getElementById("seatsInput").value);
-      const resultsDiv = document.getElementById("carList");
-      resultsDiv.innerHTML = ""; // Clear old results
+      const seatInput = document.getElementById("seatsInput").value;
+      const daysInput = document.getElementById("daysInput").value;
+      const carDisplay = document.getElementById("carList");
 
-      // Filter and display cars
-      carList.forEach(function(car, index) {
-        if (car.seats >= seatsNeeded) {
-          const carButton = document.createElement("button");
-          carButton.textContent = `${car.name} - ${car.seats} seats - $${car.price}`;
-          carButton.className = "car-option";
-          carButton.onclick = function() {
+      // Validate inputs
+      if (seatInput === "" || daysInput === "" || isNaN(seatInput) || isNaN(daysInput) || seatInput < 1 || seatInput > 8 || daysInput < 1) {
+        alert("Please enter a valid number of seats (1-8) and days (1 or more).");
+        return;
+      }
+
+      const requiredSeats = Number(seatInput);
+      rentalDays = Number(daysInput);
+      carDisplay.innerHTML = "<h3>Select a car:</h3>";
+
+      // Filter and show cars
+      cars.forEach(function(car) {
+        if (car.seats >= requiredSeats) {
+          const btn = document.createElement("button");
+          btn.textContent = `${car.name} - ${car.seats} seats - $${car.price}`;
+          btn.className = "car-option";
+          btn.onclick = function() {
             selectedCar = car;
-            document.getElementById("upgradeSection").style.display = "block";
+            displayOutcome();
           };
-          resultsDiv.appendChild(carButton);
+          carDisplay.appendChild(btn);
         }
       });
     }
 
-    // Calculate total cost after insurance choice
-    function selectCar(addInsurance) {
-      let cost = selectedCar.price;
-      if (addInsurance) {
-        cost += 50;
-      }
+    // Show the result and cost
+    function displayOutcome() {
+      const cost = selectedCar.seats * rentalDays * 10;
+      const resultDiv = document.getElementById("result");
 
-      document.getElementById("totalCost").innerHTML =
-        `<h3>You selected the ${selectedCar.name}</h3>
-         <p>Total cost: $${cost}</p>`;
+      resultDiv.innerHTML = `
+        <h3>Thank you, ${userName}!</h3>
+        <p>You have been assigned: <strong>${selectedCar.name}</strong></p>
+        <p>Number of days: <strong>${rentalDays}</strong></p>
+        <p>Total cost: <strong>$${cost}</strong></p>
+      `;
+      resultDiv.classList.remove("hidden");
     }
   </script>
 
