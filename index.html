@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car Rental App</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .car-button { margin: 5px 0; display: block; }
+    .error { color: red; }
+    .section { margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>Rob's Car Rentals</h1>
+
+  <!-- All form fields shown together -->
+  <div class="section">
+    <label for="nameInput">Your name:</label><br>
+    <input type="text" id="nameInput"><br><br>
+
+    <label for="seatsDropdown">How many seats do you need?</label><br>
+    <select id="seatsDropdown">
+      <option value="">-- Select seats --</option>
+      <option value="1">1 seat</option>
+      <option value="2">2 seats</option>
+      <option value="3">3 seats</option>
+      <option value="4">4 seats</option>
+      <option value="5">5 seats</option>
+      <option value="6">6 seats</option>
+      <option value="7">7 seats</option>
+      <option value="8">8 seats</option>
+    </select><br><br>
+
+    <label for="daysInput">How many days would you like to rent it?</label><br>
+    <input type="number" id="daysInput" min="1"><br><br>
+
+    <label>
+      <input type="checkbox" id="insuranceCheckbox">
+      Add insurance for $50
+    </label><br><br>
+
+    <button onclick="startRental()">Find Matching Cars</button>
+    <p id="inputError" class="error"></p>
+  </div>
+
+  <!-- Welcome text + matching cars -->
+  <div class="section">
+    <h2 id="welcomeText"></h2>
+    <div id="carList"></div>
+  </div>
+
+  <!-- Final outcome -->
+  <div class="section" id="result"></div>
+
+  <script>
+    const cars = [
+      { name: "BAC Mono", seats: 1, price: 100 },
+      { name: "Mazda MX5", seats: 2, price: 120 },
+      { name: "Toyota Yaris", seats: 3, price: 130 },
+      { name: "Mini Cooper", seats: 4, price: 140 },
+      { name: "KIA Sportage", seats: 5, price: 150 },
+      { name: "Mitsubishi Triton", seats: 6, price: 160 },
+      { name: "Mitsubishi Outlander", seats: 7, price: 170 },
+      { name: "KIA Carnival", seats: 8, price: 180 }
+    ];
+
+    let selectedCar = null;
+
+    function startRental() {
+      const name = document.getElementById("nameInput").value.trim();
+      const seatValue = document.getElementById("seatsDropdown").value;
+      const daysValue = document.getElementById("daysInput").value;
+      const insuranceSelected = document.getElementById("insuranceCheckbox").checked;
+      const errorMsg = document.getElementById("inputError");
+      const carListDiv = document.getElementById("carList");
+      const resultDiv = document.getElementById("result");
+      const welcomeText = document.getElementById("welcomeText");
+
+      // Clear old outputs
+      errorMsg.textContent = "";
+      carListDiv.innerHTML = "";
+      resultDiv.innerHTML = "";
+      welcomeText.textContent = "";
+
+      // Validation
+      if (name === "" || !isNaN(name)) {
+        errorMsg.textContent = "Please enter a valid name.";
+        return;
+      }
+
+      if (seatValue === "" || daysValue === "" || daysValue < 1) {
+        errorMsg.textContent = "Please select a number of seats and enter valid rental days.";
+        return;
+      }
+
+      const seatCount = Number(seatValue);
+      const rentalDays = Number(daysValue);
+
+      // Welcome message
+      welcomeText.textContent = `Welcome, ${name}! Here are your matching cars:`;
+
+      // Show exact-match cars
+      let foundMatch = false;
+      cars.forEach(function(car) {
+        if (car.seats === seatCount) {
+          foundMatch = true;
+          const btn = document.createElement("button");
+          btn.textContent = `${car.name} - ${car.seats} seats - $${car.price}`;
+          btn.className = "car-button";
+          btn.onclick = function() {
+            const insuranceCost = insuranceSelected ? 50 : 0;
+            const totalCost = car.seats * rentalDays * 10 + insuranceCost;
+            resultDiv.innerHTML = `
+              <h3>Thank you, ${name}!</h3>
+              <p>You selected: <strong>${car.name}</strong></p>
+              <p>Rental duration: <strong>${rentalDays} day(s)</strong></p>
+              <p>Insurance added: <strong>${insuranceSelected ? "Yes (+$50)" : "No"}</strong></p>
+              <p>Total cost: <strong>$${totalCost}</strong></p>
+            `;
+          };
+          carListDiv.appendChild(btn);
+        }
+      });
+
+      if (!foundMatch) {
+        carListDiv.innerHTML = `<p class="error">Sorry ${name}, we have no cars with exactly ${seatCount} seat(s).</p>`;
+      }
+    }
+  </script>
+
+</body>
+</html>
