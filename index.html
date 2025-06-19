@@ -6,6 +6,7 @@
     body { font-family: Arial; padding: 20px; }
     .hidden { display: none; }
     .car-button { margin: 5px 0; display: block; }
+    .error { color: red; }
   </style>
 </head>
 <body>
@@ -17,14 +18,33 @@
     <label for="nameInput">What's your name?</label><br>
     <input type="text" id="nameInput"><br><br>
 
-    <label for="seatsInput">How many seats do you need?</label><br>
-    <input type="number" id="seatsInput" min="1" max="8"><br><br>
+    <label for="seatsDropdown">How many seats do you need?</label><br>
+    <select id="seatsDropdown">
+      <option value="">-- Select seats --</option>
+      <option value="1">1 seat</option>
+      <option value="2">2 seats</option>
+      <option value="3">3 seats</option>
+      <option value="4">4 seats</option>
+      <option value="5">5 seats</option>
+      <option value="6">6 seats</option>
+      <option value="7">7 seats</option>
+      <option value="8">8 seats</option>
+    </select><br><br>
 
-    <label for="daysInput">How many days do you want to rent it?</label><br>
-    <input type="number" id="daysInput" min="1"><br><br>
+    <label for="daysDropdown">How many days do you want to rent it?</label><br>
+    <select id="daysDropdown">
+      <option value="">-- Select days --</option>
+      <option value="1">1 day</option>
+      <option value="2">2 days</option>
+      <option value="3">3 days</option>
+      <option value="4">4 days</option>
+      <option value="5">5 days</option>
+      <option value="6">6 days</option>
+      <option value="7">7 days</option>
+    </select><br><br>
 
     <button onclick="startRental()">Start</button>
-    <p id="inputError" style="color: red;"></p>
+    <p id="inputError" class="error"></p>
   </div>
 
   <!-- Matching cars will go here -->
@@ -56,8 +76,8 @@
     // Start the rental process and validate user input
     function startRental() {
       const nameValue = document.getElementById("nameInput").value;
-      const seatsValue = document.getElementById("seatsInput").value;
-      const daysValue = document.getElementById("daysInput").value;
+      const seatsValue = document.getElementById("seatsDropdown").value;
+      const daysValue = document.getElementById("daysDropdown").value;
       const errorMsg = document.getElementById("inputError");
 
       errorMsg.textContent = "";
@@ -67,8 +87,8 @@
         return;
       }
 
-      if (seatsValue < 1 || seatsValue > 8 || daysValue < 1) {
-        errorMsg.textContent = "Please enter valid seat and day values.";
+      if (seatsValue === "" || daysValue === "") {
+        errorMsg.textContent = "Please select seats and days from the dropdown.";
         return;
       }
 
@@ -78,15 +98,18 @@
       showMatchingCars(Number(seatsValue));
     }
 
-    // Show car options that meet seat requirement
-    function showMatchingCars(minSeats) {
+    // Show cars that exactly match the number of seats
+    function showMatchingCars(seatCount) {
       const carListDiv = document.getElementById("carList");
-      carListDiv.innerHTML = ""; // Clear old options
+      carListDiv.innerHTML = ""; // Clear previous results
       document.getElementById("carOptions").classList.remove("hidden");
 
-      // Loop through cars and show matching ones
+      let foundMatch = false;
+
+      // Loop through cars and show only those that exactly match
       cars.forEach(function(car) {
-        if (car.seats >= minSeats) {
+        if (car.seats === seatCount) {
+          foundMatch = true;
           const btn = document.createElement("button");
           btn.textContent = `${car.name} - ${car.seats} seats - $${car.price}`;
           btn.className = "car-button";
@@ -97,9 +120,13 @@
           carListDiv.appendChild(btn);
         }
       });
+
+      if (!foundMatch) {
+        carListDiv.innerHTML = `<p class="error">Sorry ${userName}, we have no cars with exactly ${seatCount} seat(s).</p>`;
+      }
     }
 
-    // Display final outcome and total cost
+    // Show the final result and cost
     function displayResult() {
       const totalCost = selectedCar.seats * rentalDays * 10;
       const resultDiv = document.getElementById("result");
