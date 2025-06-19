@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Car Rental</title>
+  <title>Car Rental App</title>
   <style>
     body { font-family: Arial; padding: 20px; }
     .hidden { display: none; }
-    .car-option { margin: 5px 0; }
+    .car-button { margin: 5px 0; display: block; }
   </style>
 </head>
 <body>
 
-  <h1>Rob's Car Rental Service</h1>
+  <h1>Rob's Car Rentals</h1>
 
-  <!-- Start button -->
-  <button onclick="startOrder()">Start Order</button>
+  <!-- Start form -->
+  <div id="startSection">
+    <label for="nameInput">What's your name?</label><br>
+    <input type="text" id="nameInput"><br><br>
 
-  <!-- Input fields -->
-  <div id="inputSection" class="hidden">
-    <p id="welcomeMessage"></p>
-
-    <label for="seatsInput">Hi <span id="userNameSpan"></span>, how many seats do you need?</label><br>
+    <label for="seatsInput">How many seats do you need?</label><br>
     <input type="number" id="seatsInput" min="1" max="8"><br><br>
 
-    <label for="daysInput">How many days would you like to rent the car?</label><br>
+    <label for="daysInput">How many days do you want to rent it?</label><br>
     <input type="number" id="daysInput" min="1"><br><br>
 
-    <button onclick="showMatchingCars()">Find Matching Cars</button>
+    <button onclick="startRental()">Start</button>
+    <p id="inputError" style="color: red;"></p>
   </div>
 
-  <!-- Matching cars -->
-  <div id="carList"></div>
+  <!-- Matching cars will go here -->
+  <div id="carOptions" class="hidden">
+    <h3>Matching cars:</h3>
+    <div id="carList"></div>
+  </div>
 
-  <!-- Final result -->
+  <!-- Final outcome -->
   <div id="result" class="hidden"></div>
 
   <script>
-    // Array of car objects
+    // Car options stored in an array of objects
     const cars = [
       { name: "BAC Mono", seats: 1, price: 100 },
       { name: "Mazda MX5", seats: 2, price: 120 },
@@ -47,65 +49,66 @@
       { name: "KIA Carnival", seats: 8, price: 180 }
     ];
 
-    // Variables to store user input
     let userName = "";
-    let selectedCar = null;
     let rentalDays = 0;
+    let selectedCar = null;
 
-    // Start order and ask for user's name
-    function startOrder() {
-      userName = prompt("What is your name?");
-      if (userName == null || userName === "" || !isNaN(userName)) {
-        alert("Please enter a valid name.");
+    // Start the rental process and validate user input
+    function startRental() {
+      const nameValue = document.getElementById("nameInput").value;
+      const seatsValue = document.getElementById("seatsInput").value;
+      const daysValue = document.getElementById("daysInput").value;
+      const errorMsg = document.getElementById("inputError");
+
+      errorMsg.textContent = "";
+
+      if (nameValue === "" || !isNaN(nameValue)) {
+        errorMsg.textContent = "Please enter a valid name.";
         return;
       }
 
-      document.getElementById("userNameSpan").textContent = userName;
-      document.getElementById("welcomeMessage").textContent = `Welcome, ${userName}!`;
-      document.getElementById("inputSection").classList.remove("hidden");
+      if (seatsValue < 1 || seatsValue > 8 || daysValue < 1) {
+        errorMsg.textContent = "Please enter valid seat and day values.";
+        return;
+      }
+
+      userName = nameValue;
+      rentalDays = Number(daysValue);
+
+      showMatchingCars(Number(seatsValue));
     }
 
-    // Show cars that match the number of seats
-    function showMatchingCars() {
-      const seatInput = document.getElementById("seatsInput").value;
-      const daysInput = document.getElementById("daysInput").value;
-      const carDisplay = document.getElementById("carList");
+    // Show car options that meet seat requirement
+    function showMatchingCars(minSeats) {
+      const carListDiv = document.getElementById("carList");
+      carListDiv.innerHTML = ""; // Clear old options
+      document.getElementById("carOptions").classList.remove("hidden");
 
-      // Validate inputs
-      if (seatInput === "" || daysInput === "" || isNaN(seatInput) || isNaN(daysInput) || seatInput < 1 || seatInput > 8 || daysInput < 1) {
-        alert("Please enter a valid number of seats (1-8) and days (1 or more).");
-        return;
-      }
-
-      const requiredSeats = Number(seatInput);
-      rentalDays = Number(daysInput);
-      carDisplay.innerHTML = "<h3>Select a car:</h3>";
-
-      // Filter and show cars
+      // Loop through cars and show matching ones
       cars.forEach(function(car) {
-        if (car.seats >= requiredSeats) {
+        if (car.seats >= minSeats) {
           const btn = document.createElement("button");
           btn.textContent = `${car.name} - ${car.seats} seats - $${car.price}`;
-          btn.className = "car-option";
+          btn.className = "car-button";
           btn.onclick = function() {
             selectedCar = car;
-            displayOutcome();
+            displayResult();
           };
-          carDisplay.appendChild(btn);
+          carListDiv.appendChild(btn);
         }
       });
     }
 
-    // Show the result and cost
-    function displayOutcome() {
-      const cost = selectedCar.seats * rentalDays * 10;
+    // Display final outcome and total cost
+    function displayResult() {
+      const totalCost = selectedCar.seats * rentalDays * 10;
       const resultDiv = document.getElementById("result");
 
       resultDiv.innerHTML = `
         <h3>Thank you, ${userName}!</h3>
-        <p>You have been assigned: <strong>${selectedCar.name}</strong></p>
-        <p>Number of days: <strong>${rentalDays}</strong></p>
-        <p>Total cost: <strong>$${cost}</strong></p>
+        <p>You have selected: <strong>${selectedCar.name}</strong></p>
+        <p>Rental duration: <strong>${rentalDays} day(s)</strong></p>
+        <p>Total cost: <strong>$${totalCost}</strong></p>
       `;
       resultDiv.classList.remove("hidden");
     }
