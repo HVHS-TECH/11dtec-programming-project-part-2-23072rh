@@ -11,140 +11,43 @@
 
 <body>
   <h1>Rob's Car Rentals</h1>
-  <!--Where user puts their name into the program-->
-  <label for="nameInput">Your name:</label><br>
-  <input type="text" id="nameInput"><br><br>
+  <div class=bookingShape>
+    <!--Where user puts their name into the program-->
+    <label for="nameInput">Your name:</label><br>
+    <input type="text" id="nameInput"><br><br>
 
-  <!--Where user puts their chosen number of seats into the program-->
-  <label for="seatsDropdown">How many seats do you need?</label><br>
-  <select id="seatsDropdown">
-    <option value="">-- Select seats --</option>
-    <option value="1">1 seat</option>
-    <option value="2">2 seats</option>
-    <option value="3">3 seats</option>
-    <option value="4">4 seats</option>
-    <option value="5">5 seats</option>
-    <option value="6">6 seats</option>
-    <option value="7">7 seats</option>
-    <option value="8">8 seats</option>
-  </select><br><br>
-  <!--Where user puts how many days they want to rent a car for into the program-->
-  <label for="daysInput">How many days would you like to rent the car?</label><br>
-  <input type="number" id="daysInput"><br><br>
+    <!--Where user puts their chosen number of seats into the program-->
+    <label for="seatsDropdown">How many seats do you need?</label><br>
+    <select id="seatsDropdown">
+      <option value=""> Select seats </option>
+      <option value="1">1 seat</option>
+      <option value="2">2 seats</option>
+      <option value="3">3 seats</option>
+      <option value="4">4 seats</option>
+      <option value="5">5 seats</option>
+      <option value="6">6 seats</option>
+      <option value="7">7 seats</option>
+      <option value="8">8 seats</option>
+    </select><br><br>
+    <!--Where user puts how many days they want to rent a car for into the program-->
+    <label for="daysInput">How many days would you like to rent the car?</label><br>
+    <input type="number" id="daysInput"><br><br>
 
-  <!--Where user decides if they want insurance on their car-->
-  <label>
-    <input type="checkbox" id="insuranceCheckbox">Add insurance for $50</label><br><br>
+    <!--Where user decides if they want insurance on their car-->
+    <label>
+      <input type="checkbox" id="insuranceCheckbox">Add insurance for $50</label><br><br>
 
-  <!--The user presses this button to finalise their rental-->
-  <button onclick="rentNow()">Submit</button><br><br>
+    <!--The user presses this button to finalise their rental-->
+    <button onclick="rentNow()">Submit</button><br><br>
 
-  <!--Input error text-->
+    <!--Input error text-->
     <p id="inputError" style="color: red;"></p>
 
-  <!--Where the final summary of the useres booking will be-->
-  <div id="summarySection"></div>
+    <!--Where the final summary of the useres booking will be-->
+    <div id="summarySection"></div>
+  </div>
+
 </body>
-
-
-
-
-<!-- ===================== -->
-<!-- 4. SCRIPT SECTION -->
-<!-- ===================== -->
-<script>
-  // --------------------------
-  // 1. CAR DATA ARRAYS
-  // --------------------------
-
-  // --------------------------
-  // 2. VARIABLE DECLARATIONS
-  // --------------------------
-
-
-  
-
-  // --------------------------
-  // 3. MAIN FUNCTION
-  // --------------------------
-  function processRental() {
-
-    // --------------------------
-    // A. GET USER INPUT
-    // --------------------------
-    name = document.getElementById("nameInput").value;
-    seatValue = document.getElementById("seatsDropdown").value;
-    daysValue = document.getElementById("daysInput").value;
-    wantsInsurance = document.getElementById("insuranceCheckbox").checked;
-
-    errorText = document.getElementById("inputError");
-    summary = document.getElementById("summarySection");
-
-    // Clear any previous messages
-    errorText.textContent = "";
-    summary.innerHTML = "";
-
-    // --------------------------
-    // B. VALIDATE INPUT
-    // --------------------------
-    if (name === "" || name === " " || !isNaN(name)) {
-      errorText.textContent = "Please enter a valid name.";
-      return;
-    }
-
-    if (seatValue === "" || daysValue === "" || Number(daysValue) < 1) {
-      errorText.textContent = "Please choose seat amount and valid rental days.";
-      return;
-    }
-
-    seatCount = Number(seatValue);
-    rentalDays = Number(daysValue);
-
-    // --------------------------
-    // C. FIND MATCHING CAR
-    // --------------------------
-    carFound = false;
-    carIndex = -1;
-
-    for (let i = 0; i < carSeats.length; i++) {
-      if (carSeats[i] === seatCount) {
-        carFound = true;
-        carIndex = i;
-      }
-    }
-
-    // --------------------------
-    // D. SHOW BASIC SUMMARY
-    // --------------------------
-    summary.innerHTML += "<h2>Rental Summary for " + name + "</h2>";
-    summary.innerHTML += "<p>Seats requested: " + seatCount + "</p>";
-    summary.innerHTML += "<p>Rental days: " + rentalDays + "</p>";
-
-    if (wantsInsurance === true) {
-      summary.innerHTML += "<p>Insurance: Yes ($50)</p>";
-    } else {
-      summary.innerHTML += "<p>Insurance: No</p>";
-    }
-
-    // --------------------------
-    // E. CALCULATE COST & SHOW RESULT
-    // --------------------------
-    if (carFound === true) {
-      carName = carNames[carIndex];
-      dailyPrice = carPrices[carIndex];
-      totalCost = dailyPrice * rentalDays;
-
-      if (wantsInsurance === true) {
-        totalCost = totalCost + 50;
-      }
-
-      summary.innerHTML += "<p>Car chosen: " + carName + " (" + seatCount + " seats)</p>";
-      summary.innerHTML += "<p>Total cost: $" + totalCost + "</p>";
-    } else {
-      summary.innerHTML += "<p style='color:red;'>Sorry, we do not have a car with exactly " + seatCount + " seats.</p>";
-    }
-  }
-</script>
 
 </body>
 
