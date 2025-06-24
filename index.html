@@ -8,52 +8,49 @@
   <script src="index.js"></script>
   <title>Rob's Car Rentals</title>
 </head>
-
-<body>
-  <div class="title">
-    <h1>Rob's Car Rentals</h1>
-  </div>
-  <br>
-  <br>
-  <br>
-  <div class=booking>
-    <!--Where user puts their name into the program-->
-    <label for="nameInput">Your name:</label><br>
-    <input type="text" id="nameInput"><br><br>
-
-    <!--Where user puts their chosen number of seats into the program-->
-    <label for="seatsDropdown">How many seats do you need?</label><br>
-    <select id="seatsDropdown">
-      <option value=""> Select seats </option>
-      <option value="1">1 seat</option>
-      <option value="2">2 seats</option>
-      <option value="3">3 seats</option>
-      <option value="4">4 seats</option>
-      <option value="5">5 seats</option>
-      <option value="6">6 seats</option>
-      <option value="7">7 seats</option>
-      <option value="8">8 seats</option>
-    </select><br><br>
-    <!--Where user puts how many days they want to rent a car for into the program-->
-    <label for="daysInput">How many days would you like to rent the car?</label><br>
-    <input type="number" id="daysInput"><br><br>
-
-    <!--Where user decides if they want insurance on their car-->
-    <label>
-      <input type="checkbox" id="insuranceCheckbox">Add insurance for $50</label><br><br>
-
-    <!--The user presses this button to finalise their rental-->
-    <button onclick="rentNow()">Submit</button><br><br>
-
-    <!--Input error text-->
-    <p id="inputError" style="color: red;"></p>
-
-    <!--Where the final summary of the useres booking will be-->
-    <div id="summarySection"></div>
-  </div>
-
 </body>
+<div class="title"></div>
+  <h1>Rob's Car Rentals</h1>
+  <a href="Home.html">Home</a>
+  <a href="rent.html">Rent now</a>
+  <a href="about.html">About us</a>
+  </div>
+  <br>
+<div class=booking>
+  <!--Where user puts their name into the program-->
+  <label for="nameInput">Your name:</label><br>
+  <input type="text" id="nameInput"><br><br>
 
+  <!--Where user puts their chosen number of seats into the program-->
+  <label for="seatsDropdown">How many seats do you need?</label><br>
+  <select id="seatsDropdown">
+    <option value=""> Select seats </option>
+    <option value="1">1 seat</option>
+    <option value="2">2 seats</option>
+    <option value="3">3 seats</option>
+    <option value="4">4 seats</option>
+    <option value="5">5 seats</option>
+    <option value="6">6 seats</option>
+    <option value="7">7 seats</option>
+    <option value="8">8 seats</option>
+  </select><br><br>
+  <!--Where user puts how many days they want to rent a car for into the program-->
+  <label for="daysInput">How many days would you like to rent the car?</label><br>
+  <input type="number" id="daysInput"><br><br>
+
+  <!--Where user decides if they want insurance on their car-->
+  <label>
+    <input type="checkbox" id="insuranceCheckbox">Add insurance for $50</label><br><br>
+
+  <!--The user presses this button to finalise their rental-->
+  <button onclick="rentNow()">Submit</button><br><br>
+
+  <!--Input error text-->
+  <p id="inputError" style="color: red;"></p>
+
+  <!--Where the final summary of the useres booking will be-->
+  <div id="summarySection"></div>
+</div>
 </body>
 
 </html>

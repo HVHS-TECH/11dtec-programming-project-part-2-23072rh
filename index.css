@@ -5,6 +5,8 @@
 }
 
 .title {
+  margin: auto;
+  text-align: center;
   height: 100px;
   width: 500px;
   background-color: #555;
