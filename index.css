@@ -13,5 +13,8 @@
 }
 
 .ourCars {
-
+  position: absolute;
+  top: 500px;
+  right: 500;
+  width: 200px;
 }
