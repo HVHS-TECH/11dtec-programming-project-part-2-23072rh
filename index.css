@@ -14,6 +14,33 @@
 
 .ourCars {
   position: absolute;
-  top: 500px;
-  right: 500px;
+  top: 200px;
+  right: 875px;
+}
+
+.userSum {
+  position: absolute;
+  top: 575px;
+  right: 750px;
+}
+
+
+
+
+
+
+
+
+
+.container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: red;
+  padding: 10px;
+}
+
+.container>div {
+  border: 1px solid black;
+  font-size: 30px;
+  text-align: center;
 }
