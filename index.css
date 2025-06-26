@@ -60,3 +60,73 @@ Where user puts their input
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*The navigation bar*/
+
+.navbar {
+  font-size: 25px;
+text-align: center;
+  margin: auto;
+}
+
+ul {
+  list-style-type: none;
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  display: inline;
+  border-right: 2px solid red;
+  border-left: 2px solid red;
+}
+
+li a {
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition-property: background-color;
+  transition-duration: 1s;
+}
+
+li a:hover {
+  background-color: #2BA84A;
+}
