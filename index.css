@@ -1,9 +1,14 @@
+/*
+Where user puts their input
+*/
 .booking {
   height: 250px;
   width: 300px;
   background-color: #555;
 }
-
+/*
+The title
+*/
 .title {
   margin: auto;
   text-align: center;
@@ -11,28 +16,34 @@
   width: 500px;
   background-color: #555;
 }
-
+/*
+Where the summary is displayed
+*/
 .userSum {
   position: absolute;
   top: 575px;
   right: 750px;
 }
-
-
-
-
-
-
-
-
-
+/*
+Box for cars
+*/
 .container {
   display: grid;
+  border: 1px solid black;
   grid-template-columns: auto auto auto;
 }
-
+/*
+Grid for cars
+*/
 .container>div {
-  font-size: 30px;
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid black;
+}
+/*
+Where user puts their input
+*/
+.enterName {
   text-align: center;
 }
 
