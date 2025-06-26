@@ -33,26 +33,8 @@ let summary;
  Main code
 ***********************************************************************/
 function rentNow() {
-    //THE USERS INPUT INTO THE PROGRAM!!!
-    //Users name
-    name = document.getElementById("nameInput").value;
-    //How many seats the user wants
-    seatValue = document.getElementById("seatsDropdown").value;
-    //How many days the user would like to rent the car
-    daysValue = document.getElementById("daysInput").value;
-    //If the user would like to add on insurance on top off their rental
-    wantsInsurance = document.getElementById("insuranceCheckbox").checked;
-    //If the user makes a mistake/slip in the process of filling out the program
-    errorText = document.getElementById("inputError");
-    //The summary of the users rental
-    summary = document.getElementById("summarySection");
-    //IS THIS NEEDED!?!?!?!?
-    /*
-    // Clear any previous messages
-    errorText.textContent = "";
-    summary.innerHTML = "";
-    */
-    //The program making sure the user enter a valid name
+    userInput();
+    //The program making sure the user enters a valid name
     if (name === "" || name === " " || !isNaN(name)) {
         errorText.textContent = "Please enter a valid name.";
         return;
@@ -75,6 +57,30 @@ function rentNow() {
             carIndex = i;
         }
     }
+    userSum();
+}
+/***********************************************************************
+ Functions
+***********************************************************************/
+function userInput() {
+    //THE USERS INPUT INTO THE PROGRAM!!!
+    //Users name
+    name = document.getElementById("nameInput").value;
+    //How many seats the user wants
+    seatValue = document.getElementById("seatsDropdown").value;
+    //How many days the user would like to rent the car
+    daysValue = document.getElementById("daysInput").value;
+    //If the user would like to add on insurance on top off their rental
+    wantsInsurance = document.getElementById("insuranceCheckbox").checked;
+    //If the user makes a mistake/slip in the process of filling out the program
+    errorText = document.getElementById("inputError");
+    //The summary of the users rental
+    summary = document.getElementById("summarySection");
+    // Clear any previous messages
+    errorText.textContent = "";
+    summary.innerHTML = "";
+}
+function userSum() {
     //Making up the summary for the users rental booking
     summary.innerHTML += "<h2>Rental Summary for " + name + "</h2>";
     summary.innerHTML += "<p>Seats requested: " + seatCount + "</p>";
@@ -102,6 +108,3 @@ function rentNow() {
         summary.innerHTML += "<p style='color:red;'>Sorry, we do not have a car with exactly " + seatCount + " seats.</p>";
     }
 }
-/***********************************************************************
- Functions
-***********************************************************************/

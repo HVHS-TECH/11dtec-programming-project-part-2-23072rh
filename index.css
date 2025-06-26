@@ -21,8 +21,8 @@ Where the summary is displayed
 */
 .userSum {
   position: absolute;
-  top: 575px;
-  right: 750px;
+  top: 1705px;
+  right: 100px;
 }
 /*
 Box for cars
@@ -45,6 +45,10 @@ Where user puts their input
 */
 .enterName {
   text-align: center;
+}
+
+.bac {
+  background-color: red;
 }
 
 
