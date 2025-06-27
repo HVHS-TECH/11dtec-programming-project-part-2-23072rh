@@ -87,7 +87,7 @@ function userSum() {
     summary.innerHTML += "<p>Rental days: " + rentalDays + "</p>";
     //Checking to see if the user wanted insurance added on or not
     if (wantsInsurance === true) {
-        summary.innerHTML += "<p>Insurance: Yes ($50)</p>";
+        summary.innerHTML += "<p>Insurance: Yes ($15)</p>";
     } else {
         summary.innerHTML += "<p>Insurance: No</p>";
     }
@@ -98,7 +98,7 @@ function userSum() {
         totalCost = dailyPrice * rentalDays;
 
         if (wantsInsurance === true) {
-            totalCost = totalCost + 50;
+            totalCost = totalCost + 15;
         }
         //Adding to the summary
         summary.innerHTML += "<p>Car chosen: " + carName + " (" + seatCount + " seats)</p>";

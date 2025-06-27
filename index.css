@@ -2,20 +2,24 @@
 Where user puts their input
 */
 .booking {
+  font-size: 20px;
   height: 250px;
-  width: 300px;
+  width: 400px;
   background-color: #555;
 }
+
 /*
 The title
 */
 .title {
   margin: auto;
   text-align: center;
-  height: 100px;
-  width: 500px;
+  font-size: 40px;
+  height: 200px;
+  width: 850px;
   background-color: #555;
 }
+
 /*
 Where the summary is displayed
 */
@@ -24,6 +28,7 @@ Where the summary is displayed
   top: 1705px;
   right: 100px;
 }
+
 /*
 Box for cars
 */
@@ -32,6 +37,7 @@ Box for cars
   border: 1px solid black;
   grid-template-columns: auto auto auto;
 }
+
 /*
 Grid for cars
 */
@@ -40,11 +46,20 @@ Grid for cars
   text-align: center;
   border: 1px solid black;
 }
+
 /*
 Where user puts their input
 */
 .enterName {
   text-align: center;
+  font-size: 30px;
+}
+
+#nameInput {
+  width: 300px;
+  font-size: 30px;
+padding: 15px;
+border-radius: 25px
 }
 
 .bac {
@@ -52,56 +67,11 @@ Where user puts their input
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*The navigation bar*/
 
 .navbar {
-  font-size: 25px;
-text-align: center;
+  font-size: 30px;
+  text-align: center;
   margin: auto;
 }
 
