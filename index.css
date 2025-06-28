@@ -1,78 +1,47 @@
-/*
-Where user puts their input
-*/
-.booking {
-  font-size: 20px;
-  height: 250px;
-  width: 400px;
-  background-color: #555;
-}
 
-/*
-The title
-*/
+/*The title
 .title {
   margin: auto;
   text-align: center;
-  font-size: 40px;
-  height: 200px;
+  font-size: 30px;
+  height: 100px;
   width: 850px;
   background-color: #555;
 }
-
-/*
-Where the summary is displayed
 */
-.userSum {
-  position: absolute;
-  top: 1705px;
-  right: 100px;
-}
 
-/*
-Box for cars
-*/
-.container {
-  display: grid;
-  border: 1px solid black;
-  grid-template-columns: auto auto auto;
-}
 
-/*
-Grid for cars
-*/
-.container>div {
-  font-size: 20px;
-  text-align: center;
-  border: 1px solid black;
-}
 
-/*
-Where user puts their input
-*/
-.enterName {
-  text-align: center;
-  font-size: 30px;
-}
 
-#nameInput {
-  width: 300px;
-  font-size: 30px;
-padding: 15px;
-border-radius: 25px
-}
 
-.bac {
-  background-color: red;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*The navigation bar*/
 
 .navbar {
-  font-size: 30px;
+  font-size: 20px;
   text-align: center;
   margin: auto;
+  height: 30px;
+  width: 700px;
+  color: #171A21;
 }
 
 ul {
@@ -99,4 +68,206 @@ li a {
 
 li a:hover {
   background-color: #2BA84A;
+}
+
+/*Rectangles*/
+
+.title {
+  text-align: center;
+  margin: auto;
+  height: 100px;
+  width: 700px;
+  background-color: #071013;
+  color: #F4FAFF;
+  font-size: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Grid for cars*/
+.container {
+  display: grid;
+  border: 1px solid black;
+  grid-template-columns: auto auto auto;
+}
+
+.container>div {
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.bac {
+  background-color: red;
+}
+
+/*Where the summary is displayed*/
+.userSum {
+  position: absolute;
+  top: 1705px;
+  right: 100px;
+}
+
+/*Where user puts their input*/
+.booking {
+  font-size: 20px;
+  height: 250px;
+  width: 400px;
+  background-color: #555;
+}
+
+/*Where user puts their name*/
+.enterName {
+  text-align: center;
+  font-size: 30px;
+}
+
+#nameInput {
+  width: 300px;
+  font-size: 30px;
+  padding: 15px;
+  border-radius: 25px
 }
