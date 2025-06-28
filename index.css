@@ -1,6 +1,7 @@
 body {
   background-color: #1E90FF;
 }
+
 .title {
   text-align: center;
   margin: auto;
@@ -71,6 +72,11 @@ li a:hover {
 
 .priceDay {
   background-color: #1CFEBA;
+  color: #F7F7FF;
+}
+
+.bac {
+  background-color: #16324F;
   color: #F7F7FF;
 }
 
