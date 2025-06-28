@@ -59,11 +59,20 @@ li a:hover {
   border: 1px solid black;
 }
 
-.seats {
+.cars {
   background-color: #1CFEBA;
+  color: #F7F7FF;
 }
 
+.seats {
+  background-color: #1CFEBA;
+  color: #F7F7FF;
+}
 
+.priceDay {
+  background-color: #1CFEBA;
+  color: #F7F7FF;
+}
 
 
 
