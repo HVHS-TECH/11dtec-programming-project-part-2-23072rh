@@ -1,10 +1,14 @@
+.body {
+background-color: #1E90FF;
+}
+  
 .title {
   text-align: center;
   margin: auto;
   height: 100px;
   width: 700px;
-  background-color: #071013;
-  color: #F4FAFF;
+  background-color: #1CFEBA;
+  color: #F7F7FF;
   font-size: 30px;
 }
 
