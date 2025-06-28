@@ -29,8 +29,8 @@ ul {
 
 li {
   display: inline;
-  border-right: 2px solid red;
-  border-left: 2px solid red;
+  border-right: 2px solid #1E90FF;
+  border-left: 2px solid #1E90FF;
 }
 
 li a {
@@ -43,7 +43,7 @@ li a {
 }
 
 li a:hover {
-  background-color: #62C370;
+  background-color: #16324F;
 }
 
 /*Grid for cars*/
@@ -58,6 +58,104 @@ li a:hover {
   text-align: center;
   border: 1px solid black;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*Where the summary is displayed*/
 .userSum {
