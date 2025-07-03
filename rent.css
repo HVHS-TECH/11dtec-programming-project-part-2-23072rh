@@ -1,0 +1,319 @@
+/*background*/
+body {
+  background-color: #1E90FF;
+}
+
+/*website title*/
+.title {
+  text-align: center;
+  margin: auto;
+  height: 100px;
+  width: 700px;
+  background-color: #1CFEBA;
+  color: #F7F7FF;
+  font-size: 30px;
+}
+
+/*The navigation bar*/
+.navbar {
+  font-size: 25px;
+  text-align: center;
+  margin: auto;
+  height: 30px;
+  width: 700px;
+}
+
+ul {
+  list-style-type: none;
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  display: inline;
+  border-right: 2px solid #1E90FF;
+  border-left: 2px solid #1E90FF;
+}
+
+li a {
+  color: #F7F7FF;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition-property: background-color;
+  transition-duration: 1s;
+}
+
+li a:hover {
+  background-color: #16324F;
+}
+
+/*Where user puts their name*/
+.enterName {
+  text-align: center;
+  font-size: 30px;
+  color: #F7F7FF;
+}
+
+#nameInput {
+  width: 300px;
+  font-size: 30px;
+  text-align: center;
+  color: #F7F7FF;
+  background-color: #3399FF;
+  padding: 15px;
+  border-radius: 25px;
+  border: 2px solid #1CFEBA;
+  margin: auto;
+}
+
+/*Grid for cars*/
+.container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.container>div {
+  font-size: 20px;
+  text-align: center;
+}
+
+/*car info*/
+.cars {
+  background-color: #1CFEBA;
+  color: #F7F7FF;
+}
+
+.seats {
+  background-color: #1CFEBA;
+  color: #F7F7FF;
+}
+
+.priceDay {
+  background-color: #1CFEBA;
+  color: #F7F7FF;
+}
+
+/*Bac row*/
+.bac {
+  background-color: #3399FF;
+  color: #F7F7FF;
+}
+
+.bacSeats {
+  background-color: #3399FF;
+  color: #F7F7FF;
+}
+
+.bacPrice {
+  background-color: #3399FF;
+  color: #F7F7FF;
+}
+
+/*mx5 row*/
+.mx5 {
+  background-color: #1E90FF;
+  color: #F7F7FF;
+}
+
+.mx5Seats {
+  background-color: #1E90FF;
+  color: #F7F7FF;
+}
+
+.mx5Price {
+  background-color: #1E90FF;
+  color: #F7F7FF;
+}
+
+/*yaris row*/
+.yaris {
+  background-color: #3399FF;
+  color: #F7F7FF;
+}
+
+.yarisSeats {
+  background-color: #3399FF;
+  color: #F7F7FF;
+}
+
+.yarisPrice {
+  background-color: #3399FF;
+  color: #F7F7FF;
+}
+
+/*cooper row*/
+.cooper {
+  background-color: #1E90FF;
+  color: #F7F7FF;
+}
+
+.cooperSeats {
+  background-color: #1E90FF;
+  color: #F7F7FF;
+}
+
+.cooperPrice {
+  background-color: #1E90FF;
+  color: #F7F7FF;
+}
+
+/*sportage row*/
+.sportage {
+  background-color: #3399FF;
+  color: #F7F7FF;
+}
+
+.sportageSeats {
+  background-color: #3399FF;
+  color: #F7F7FF;
+}
+
+.sportagePrice {
+  background-color: #3399FF;
+  color: #F7F7FF;
+}
+
+/*triton row*/
+.triton {
+  background-color: #1E90FF;
+  color: #F7F7FF;
+}
+
+.tritonSeats {
+  background-color: #1E90FF;
+  color: #F7F7FF;
+}
+
+.tritonPrice {
+  background-color: #1E90FF;
+  color: #F7F7FF;
+}
+
+/*outlander row*/
+.outlander {
+  background-color: #3399FF;
+  color: #F7F7FF;
+}
+
+.outlanderSeats {
+  background-color: #3399FF;
+  color: #F7F7FF;
+}
+
+.outlanderPrice {
+  background-color: #3399FF;
+  color: #F7F7FF;
+}
+
+/*carnival row*/
+.carnival {
+  background-color: #1E90FF;
+  color: #F7F7FF;
+}
+
+.carnivalSeats {
+  background-color: #1E90FF;
+  color: #F7F7FF;
+}
+
+.carnivalPrice {
+  background-color: #1E90FF;
+  color: #F7F7FF;
+}
+
+/*Where user puts their chosen amount of seats*/
+.enterSeats {
+  font-size: 30px;
+  color: #F7F7FF;
+}
+
+#seatsDropdown {
+  width: 300px;
+  font-size: 30px;
+  color: #F7F7FF;
+  background-color: #3399FF;
+  text-align: center;
+  padding: 15px;
+  border-radius: 25px;
+  border: 2px solid #1CFEBA;
+  margin: auto;
+}
+
+/*Where user chooses how many days they would like to rent the car*/
+.enterDays {
+  font-size: 30px;
+  color: #F7F7FF;
+}
+
+#daysInput {
+  width: 300px;
+  font-size: 30px;
+  text-align: center;
+  background-color: #3399FF;
+  padding: 15px;
+  border-radius: 25px;
+  border: 2px solid #1CFEBA;
+  margin: auto;
+}
+
+/*Where user chooses if they would like to add on insurance to their rental car*/
+.enterInsurance {
+  font-size: 30px;
+  color: #F7F7FF;
+}
+
+#insuranceCheckbox {
+  transform: scale(3);
+  margin-right: 20px;
+}
+
+/*Where the user submits all their input*/
+.enterSubmit {
+  font-size: 30px;
+  text-align: center;
+  color: #F7F7FF;
+  background-color: #3399FF;
+  width: 200px;
+  height: 80px;
+  padding: 15px;
+  border-radius: 25px;
+  border: 2px solid #1CFEBA;
+}
+
+/*Where the error measages will show*/
+.errorText {
+  font-size: 30px;
+}
+
+/*Where the summary is displayed*/
+.userSum {
+  font-size: 20px;
+  color: #F7F7FF;
+  position: absolute;
+  top: 1800px;
+  right: 50px;
+}
+
+/*Where the reset text will show*/
+.resetText {
+  text-align: center;
+  font-size: 30px;
+  color: #F7F7FF;
+}
+
+/*Where the reset button will show*/
+.resetButton {
+  display: block;
+  margin: auto;
+  font-size: 20px;
+  text-align: center;
+  color: #F7F7FF;
+  background-color: #3399FF;
+  width: 100px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 2px solid #1CFEBA;
+}

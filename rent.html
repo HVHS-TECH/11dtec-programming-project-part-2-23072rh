@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="rent.css">
+  <script src="rent.js"></script>
+  <title>Rob's Car Rentals</title>
+</head>
+</body>
+<!--Website title-->
+<div class="title">
+  <h1>Rob's car Rentals</h1>
+</div>
+<!--Website navigation bar-->
+<div class="navbar">
+  <ul>
+    <li><a class="active" href="index.html">Home</a></li>
+    <li><a href="rent.html">Rent</a></li>
+    <li><a href="credits.html">Credits</a></li>
+  </ul>
+</div>
+<br>
+<!--Where user puts their name into the program-->
+<div class="enterName">
+  <label for="nameInput">Your name:</label><br>
+  <input type="text" id="nameInput"><br><br>
+</div>
+<div class="container">
+  <div class="cars">
+    <h2>Our Cars</h2>
+  </div>
+  <div class="seats">
+    <h2>Number of Seats</h2>
+  </div>
+  <div class="priceDay">
+    <h2>Price per Day</h2>
+  </div>
+  <div class="bac">
+    <br>
+    <img src="bac edit.png" alt="The BAC Mono">
+    <br>
+    <h10>BAC Mono</h10>
+  </div>
+  <div class="bacSeats">
+    <br>
+    <br>
+    <h2>1</h2>
+  </div>
+  <div class="bacPrice">
+    <br>
+    <br>
+    <h2>$100 NZD</h2>
+  </div>
+  <div class="mx5">
+    <br>
+    <img src="mx5 edit.png" alt="The BAC Mono">
+    <br>
+    <h10>Mazda MX5</h10>
+  </div>
+  <div class="mx5Seats">
+    <br>
+    <br>
+    <h2>2</h2>
+  </div>
+  <div class="mx5Price">
+    <br>
+    <br>
+    <h2>$120 NZD</h2>
+  </div>
+  <div class="yaris">
+    <br>
+    <img src="yaris edit.png" alt="The BAC Mono">
+    <br>
+    <h10>Toyota Yaris</h10>
+  </div>
+  <div class="yarisSeats">
+    <br>
+    <br>
+    <h2>3</h2>
+  </div>
+  <div class="yarisPrice">
+    <br>
+    <br>
+    <h2>$130 NZD</h2>
+  </div>
+  <div class="cooper">
+    <br>
+    <img src="cooper edit.png" alt="The BAC Mono">
+    <br>
+    <h10>Mini Cooper</h10>
+  </div>
+  <div class="cooperSeats">
+    <br>
+    <br>
+    <h2>4</h2>
+  </div>
+  <div class="cooperPrice">
+    <br>
+    <br>
+    <h2>$140 NZD</h2>
+  </div>
+  <div class="sportage">
+    <br>
+    <img src="sportage edit.png" alt="The BAC Mono">
+    <br>
+    <h10>KIA Sportage</h10>
+  </div>
+  <div class="sportageSeats">
+    <br>
+    <br>
+    <h2>5</h2>
+  </div>
+  <div class="sportagePrice">
+    <br>
+    <br>
+    <h2>$150 NZD</h2>
+  </div>
+  <div class="triton">
+    <br>
+    <img src="triton edit.png" alt="The BAC Mono">
+    <br>
+    <h10>Mitsubushi Triton</h10>
+  </div>
+  <div class="tritonSeats">
+    <br>
+    <br>
+    <h2>6</h2>
+  </div>
+  <div class="tritonPrice">
+    <br>
+    <br>
+    <h2>$160 NZD</h2>
+  </div>
+  <div class="outlander">
+    <br>
+    <img src="outlander edit.png" alt="The BAC Mono">
+    <br>
+    <h10>Mitsubushi Outlander</h10>
+  </div>
+  <div class="outlanderSeats">
+    <br>
+    <br>
+    <h2>7</h2>
+  </div>
+  <div class="outlanderPrice">
+    <br>
+    <br>
+    <h2>$170 NZD</h2>
+  </div>
+  <div class="carnival">
+    <br>
+    <img src="carnival edit.png" alt="The BAC Mono">
+    <br>
+    <h10>KIA Carnival</h10>
+  </div>
+  <div class="carnivalSeats">
+    <br>
+    <br>
+    <h2>8</h2>
+  </div>
+  <div class="carnivalPrice">
+    <br>
+    <br>
+    <h2>$180 NZD</h2>
+  </div>
+</div>
+<br>
+<!--Where user puts their chosen number of seats into the program-->
+<div class="enterSeats">
+  <label for="seatsDropdown">How many seats do you need?</label><br>
+  <select id="seatsDropdown">
+    <option value=""> Select seats </option>
+    <option value="1">1 seat</option>
+    <option value="2">2 seats</option>
+    <option value="3">3 seats</option>
+    <option value="4">4 seats</option>
+    <option value="5">5 seats</option>
+    <option value="6">6 seats</option>
+    <option value="7">7 seats</option>
+    <option value="8">8 seats</option>
+  </select><br><br>
+</div>
+<br>
+<!--Where user puts how many days they want to rent a car for into the program-->
+<div class="enterDays">
+  <label for="daysInput">How many days would you like to rent the car?</label><br>
+  <input type="number" id="daysInput"><br><br>
+</div>
+<br>
+<!--Where user decides if they want insurance on their car-->
+<div class="enterInsurance">
+  <label>
+    <input type="checkbox" id="insuranceCheckbox">Add insurance for $15</label><br><br>
+</div>
+<!--The user presses this button to finalise their rental-->
+<button class="enterSubmit" type="button" onclick="rentNow()">Submit</button>
+<br>
+<!--Input error text-->
+<div class="errorText">
+  <p id="inputError" style="color: red;"></p>
+</div>
+<!--Where the final summary of the useres booking will be-->
+<div class="userSum">
+  <div id="summarySection"></div>
+</div>
+<div class="resetText">
+  <h4>If you would like to redo your rental, click the button bellow.</h4>
+</div>
+<!--What the user can press if they would like to redo their rental-->
+<button class="resetButton type=" button" onclick="resetButton()">Reset</button>
+</body>
+
+</html>

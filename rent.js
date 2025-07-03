@@ -5,7 +5,6 @@
  Purpose: Part 2 Java Script project
  **********************************************************************/
 console.log("Running index.js");
-console.log("STUDIO CODE RUNNING");
 /*********************************************************************** 
  Varibles
 ***********************************************************************/
@@ -33,6 +32,8 @@ let summary;
 /***********************************************************************
  Main code
 ***********************************************************************/
+/*This function is connected to the submit button, and it's used to run every single line of code
+needed for the website to work smoothly*/
 function rentNow() {
     userInput();
     //The program making sure the user enters a valid name
@@ -63,8 +64,9 @@ function rentNow() {
 /***********************************************************************
  Functions
 ***********************************************************************/
+/*This function is used to call all of the nessasary values and names into the code, so that
+everything can be used without having to call everything in random areas of the code.*/
 function userInput() {
-    //THE USERS INPUT INTO THE PROGRAM!!!
     //Users name
     name = document.getElementById("nameInput").value;
     //How many seats the user wants
@@ -81,6 +83,8 @@ function userInput() {
     errorText.textContent = "";
     summary.innerHTML = "";
 }
+/*This function is used to gather all of the user input, and display it on the page
+in a short summary for the user to refer to.*/
 function userSum() {
     //Making up the summary for the users rental booking
     summary.innerHTML += "<h2>Rental Summary for " + name + "</h2>";
@@ -108,4 +112,10 @@ function userSum() {
         //Setting colour to red and showing error measage
         summary.innerHTML += "<p style='color:red;'>Sorry, we do not have a car with exactly " + seatCount + " seats.</p>";
     }
+}
+/*This funtion is code used for a reset button at the very bottom of the page, and it's
+there just in case the user isn't happy or had chnaged their mind about their rental choices.
+This allows the user to resst the page, and redo evrything they have dont so far.*/
+function resetButton() {
+    window.location.href = "rent.html";
 }
